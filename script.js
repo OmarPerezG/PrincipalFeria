@@ -40,14 +40,14 @@ function checkAnswer(selectedOption, correctAnswer) {
         correctSound.play();
         resultModal.style.display = "block";
         setTimeout(() => {
-            window.location.reload(); // Recargar la página para mostrar una nueva pregunta
+            window.location.href = "https://omarperezg.github.io/Ruleta/"; // Cambia a la ruta correcta
         }, 3000);
     } else {
         resultMessage.textContent = "Respuesta incorrecta. La respuesta correcta es: " + correctAnswer;
         incorrectSound.play();
         resultModal.style.display = "block";
         setTimeout(() => {
-            window.location.reload(); // Recargar la página para mostrar una nueva pregunta
+          window.location.href = "https://omarperezg.github.io/end/"; // Cambia a la ruta correcta
         }, 3000);
     }
 }
