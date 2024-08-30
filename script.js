@@ -17,22 +17,14 @@ const preguntas = [
         { pregunta: "¿Qué protocolos se deben seguir en caso de un accidente eléctrico?", opciones: ["Notificar a los servicios médicos y seguir el procedimiento de emergencia", "Solo informar al supervisor", "Esperar a que pase el incidente"], answer: "Notificar a los servicios médicos y seguir el procedimiento de emergencia" },
         { pregunta: "¿Cuál es la importancia del mantenimiento preventivo en equipos eléctricos?", opciones: ["Evita fallos inesperados y asegura el funcionamiento seguro", "Solo mejora la apariencia del equipo", "No tiene mucha importancia"], answer: "Evita fallos inesperados y asegura el funcionamiento seguro" },
         { pregunta: "¿Cómo se debe proceder si se encuentra una falla en el sistema eléctrico durante una revisión?", opciones: ["Aislar el sistema afectado y realizar las reparaciones necesarias", "Continuar con la revisión sin hacer cambios", "No se necesita hacer nada"], answer: "Aislar el sistema afectado y realizar las reparaciones necesarias" }
-];
-
-let currentQuestion = null;
 
 document.addEventListener("DOMContentLoaded", function() {
     showQuestion();
 });
 
 function showQuestion() {
-    if (preguntas.length === 0) {
-        alert("No hay más preguntas disponibles.");
-        return;
-    }
-    
     const randomIndex = Math.floor(Math.random() * preguntas.length);
-    currentQuestion = preguntas[randomIndex];
+    const currentQuestion = preguntas[randomIndex];
     
     document.getElementById("question").textContent = currentQuestion.pregunta;
 
@@ -42,30 +34,30 @@ function showQuestion() {
     currentQuestion.opciones.forEach(opcion => {
         const button = document.createElement("button");
         button.textContent = opcion;
-        button.onclick = () => checkAnswer(opcion);
+        button.onclick = () => checkAnswer(opcion, currentQuestion.answer);
         optionsContainer.appendChild(button);
     });
 }
 
-function checkAnswer(selectedOption) {
+function checkAnswer(selectedOption, correctAnswer) {
     const resultModal = document.getElementById("resultModal");
     const resultMessage = document.getElementById("resultMessage");
     const correctSound = document.getElementById("correctSound");
     const incorrectSound = document.getElementById("incorrectSound");
 
-    if (selectedOption === currentQuestion.answer) {
+    if (selectedOption === correctAnswer) {
         resultMessage.textContent = "¡Respuesta correcta!";
         correctSound.play();
         resultModal.style.display = "block";
         setTimeout(() => {
-            window.location.href = "https://omarperezg.github.io/Ruleta/"; // Cambia a la ruta correcta
-        }, 3000); // Redirige después de 3 segundos
+            window.location.reload(); // Recargar la página para mostrar una nueva pregunta
+        }, 3000);
     } else {
-        resultMessage.textContent = "Respuesta incorrecta. La respuesta correcta es: " + currentQuestion.answer;
+        resultMessage.textContent = "Respuesta incorrecta. La respuesta correcta es: " + correctAnswer;
         incorrectSound.play();
         resultModal.style.display = "block";
         setTimeout(() => {
-            window.location.href = "https://omarperezg.github.io/end/"; // Cambia a la ruta correcta
-        }, 3000); // Redirige después de 3 segundos
+            window.location.reload(); // Recargar la página para mostrar una nueva pregunta
+        }, 3000);
     }
 }
