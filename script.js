@@ -69,14 +69,14 @@ function checkAnswer(selectedOption) {
         correctSound.play();
         resultModal.style.display = "block";
         setTimeout(() => {
-            window.location.href = "Ruleta/index.html"; // Cambia a la ruta correcta
+            window.location.href = "https://omarperezg.github.io/Ruleta/"; // Cambia a la ruta correcta
         }, 3000); // Redirige después de 3 segundos
     } else {
         resultMessage.textContent = "Respuesta incorrecta. La respuesta correcta es: " + currentQuestion.answer;
         incorrectSound.play();
         resultModal.style.display = "block";
         setTimeout(() => {
-            window.location.href = "end.html"; // Cambia a la ruta correcta
+            window.location.href = "https://omarperezg.github.io/end/"; // Cambia a la ruta correcta
         }, 3000); // Redirige después de 3 segundos
     }
 }
